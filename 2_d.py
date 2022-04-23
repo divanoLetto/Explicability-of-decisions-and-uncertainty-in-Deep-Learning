@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     name_class_file = open('./dataset/DL_data/synset_words.txt', 'r')
     Lines = name_class_file.readlines()
-    dict_class_id_name  = {}
+    dict_class_id_name = {}
     count = 0
     for line in Lines:
         dict_class_id_name[count] = line.replace("\n", "")
