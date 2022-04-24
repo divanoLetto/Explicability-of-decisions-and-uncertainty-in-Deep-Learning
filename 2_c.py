@@ -1,5 +1,5 @@
+import argparse
 import os
-from PIL import Image
 import numpy as np
 import random
 import torch
@@ -7,6 +7,7 @@ from torchvision import models
 from torch.optim import SGD
 import torchvision.transforms as transforms
 from Utils import auto_grad, squeeze, unsqueeze, rescale, gauss_filter
+from utils import settings_parser
 
 
 # todo do i need this class?
@@ -91,7 +92,12 @@ class ModelClassVisualization():
 
 
 if __name__ == '__main__':
-    rootdir = './dataset/DL_data_p/'
+    parser = argparse.ArgumentParser()
+    # Get settings
+    settings_system = settings_parser.get_settings('System')
+    settings_dataset = settings_parser.get_settings('Dataset')
+
+    rootdir = settings_dataset['val_images_path']
     classes = []
     for file in os.listdir(rootdir):
         d = os.path.join(rootdir, file)

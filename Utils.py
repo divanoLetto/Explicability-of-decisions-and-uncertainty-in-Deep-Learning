@@ -30,8 +30,8 @@ def auto_grad(img_tensor):
 
 def rescale(img_tensor):
     """
-            To let PyTorch automatically track and calculate gradients for the tensor.
-        """
+        rescale back the tensor to [0,255] and with all int elements
+    """
     ten = torch.clamp(img_tensor, min=0, max=1)
     ten = torch.round(ten * 255)
     ten = torch.tensor(ten, dtype=torch.uint8)

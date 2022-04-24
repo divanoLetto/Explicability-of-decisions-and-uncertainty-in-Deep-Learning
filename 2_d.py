@@ -1,15 +1,22 @@
+import argparse
 import os
 from torchvision.models import vgg16
 from torchvision.transforms import transforms
 from PIL import Image
 from Utils import unsqueeze
 import torch
+from utils import settings_parser
 
 
 if __name__ == '__main__':
-    test_img_dir = './dataset/DL_data/test_images'
+    parser = argparse.ArgumentParser()
+    # Get settings
+    settings_system = settings_parser.get_settings('System')
+    settings_dataset = settings_parser.get_settings('Dataset')
 
-    name_class_file = open('./dataset/DL_data/synset_words.txt', 'r')
+    test_img_dir = settings_dataset['test_images_path']
+    name_class_file = open(settings_dataset['synset_words_path'], 'r')
+
     Lines = name_class_file.readlines()
     dict_class_id_name = {}
     count = 0
@@ -27,6 +34,7 @@ if __name__ == '__main__':
         transforms.ToTensor(),
         normalize,
     ])
+    softmax = torch.nn.Softmax(dim=1)
 
     for img in os.listdir(test_img_dir):
 
@@ -41,12 +49,11 @@ if __name__ == '__main__':
             # compute output
             output = vgg16(tensor_image)
             # Softmax on output and store in a list
-            softmax = torch.nn.Softmax(dim=1)
             norm_output = softmax(output).tolist()[0]
 
             # Sort the classes prediction based on the output probability
             indices = [i for i in range(0,1000)]
-            sorted_value_class = sorted(zip(output, indices), key=lambda x: x[0], reverse=True)
+            sorted_value_class = sorted(zip(norm_output, indices), key=lambda x: x[0], reverse=True)
 
             print("Image: ", img," :")
             for i in range(0,5):

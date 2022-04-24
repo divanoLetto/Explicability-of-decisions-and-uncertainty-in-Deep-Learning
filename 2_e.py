@@ -1,3 +1,4 @@
+import argparse
 import os
 from torchvision.models import vgg16
 import torch
@@ -5,11 +6,16 @@ from PIL import Image
 from Utils import unsqueeze, auto_grad, squeeze, rescale
 from torchvision.transforms import transforms
 import matplotlib.pyplot as plt
+from utils import settings_parser
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    # Get settings
+    settings_system = settings_parser.get_settings('System')
+    settings_dataset = settings_parser.get_settings('Dataset')
 
-    test_img_dir = './dataset/DL_data/test_images'
+    test_img_dir = settings_dataset['test_images_path']
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     transf = transforms.Compose([

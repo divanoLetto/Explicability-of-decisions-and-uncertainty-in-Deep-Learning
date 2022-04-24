@@ -25,7 +25,7 @@ def cross_entropy(y, y_pre):
     return loss/float(y_pre.shape[0])
 
 
-def validate(val_loader, model, args):
+def evaluate(val_loader, model, args):
     batch_time = []
     losses = []
     top1 = []
@@ -47,13 +47,13 @@ def validate(val_loader, model, args):
 
             # compute output
             output = model(images)
+            # todo non c'è processamento dell'immagine con i transforms, è giusto?
 
             # measure loss
             loss = cross_entropy(ground_truth, output)
             # measure accuracy
             acc = accuracy_score(np.argmax(ground_truth, axis=1), np.argmax(output, axis=1))
 
-            # todo controllare quando l'accuracy è zero
             losses.append(loss)
             top1.append(acc)
 
@@ -68,25 +68,18 @@ def validate(val_loader, model, args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
+    parser = argparse.ArgumentParser()
     # Get settings
     settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
-    settings_model = settings_parser.get_settings('Model')
 
     print_freq = int(settings_system['print_freq'])
-    batch_size = int(settings_model['batch_size'])
-    weights_save_path = settings_model['weights_save_path']
     val_images_path = settings_dataset['val_images_path']
+    batch_size = 256
 
     # load ImageNet VGG16 Weights
-    if Path(weights_save_path).is_file():
-        VGG16 = vgg16()
-        VGG16.load_state_dict(torch.load(weights_save_path))
-    # otherwise download ImageNet VGG16 Weights and save them
-    else:
-        VGG16 = vgg16(pretrained=True)
-        torch.save(VGG16.state_dict(), weights_save_path)
+    VGG16 = vgg16(pretrained=True)
+
     # pre-process the dataset
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     transf = transforms.Compose([
@@ -106,7 +99,7 @@ if __name__ == "__main__":
 
     args = {'print_freq': print_freq}
 
-    batch_time_avg, losses_avg, top1_avg = validate(val_loader, model, args)
+    batch_time_avg, losses_avg, top1_avg = evaluate(val_loader, model, args)
     print("Average batch time: ", batch_time_avg)
     print("Average loss: ", losses_avg)
     print("Average top1 acc: ", top1_avg)
