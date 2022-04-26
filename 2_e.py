@@ -7,12 +7,12 @@ from Utils import unsqueeze, auto_grad, squeeze, rescale
 from torchvision.transforms import transforms
 import matplotlib.pyplot as plt
 from utils import settings_parser
+import numpy as np
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Get settings
-    settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
 
     test_img_dir = settings_dataset['test_images_path']
@@ -49,7 +49,11 @@ if __name__ == '__main__':
             # Normalize to [0,1]
             M = (M - M.min()) / (M.max() - M.min())
 
-            plt.imshow(M, cmap="inferno")
+            # Get the color map
+            cm = plt.get_cmap('inferno')
+            # Apply the colormap like a function to any array:
+            colored_image = cm(M)
             path = ".\class_saliency_maps/" + img
-            plt.savefig(path)
-            plt.clf()
+
+            # But we want to convert to RGB in uint8 and save it:
+            Image.fromarray((colored_image[:, :, :3] * 255).astype(np.uint8)).save(path)

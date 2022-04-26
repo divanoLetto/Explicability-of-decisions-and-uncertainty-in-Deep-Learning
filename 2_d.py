@@ -9,14 +9,15 @@ from utils import settings_parser
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
     # Get settings
+    parser = argparse.ArgumentParser()
     settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
 
     test_img_dir = settings_dataset['test_images_path']
     name_class_file = open(settings_dataset['synset_words_path'], 'r')
 
+    # Get a dictionary that maps class idx to their class names
     Lines = name_class_file.readlines()
     dict_class_id_name = {}
     count = 0
@@ -55,6 +56,7 @@ if __name__ == '__main__':
             indices = [i for i in range(0,1000)]
             sorted_value_class = sorted(zip(norm_output, indices), key=lambda x: x[0], reverse=True)
 
+            # print the 5 most probable class for each image
             print("Image: ", img," :")
             for i in range(0,5):
                 id_class = sorted_value_class[i][1]
