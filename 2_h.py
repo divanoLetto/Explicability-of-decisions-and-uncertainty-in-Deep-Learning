@@ -25,7 +25,6 @@ if __name__ == '__main__':
     settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
     test_img_dir = settings_dataset['test_images_path']
-    true_labels = [795, 23, 270, 858, 756]
 
     iterations = 100
     model = vgg16(pretrained=True)
@@ -68,17 +67,6 @@ if __name__ == '__main__':
     predicted_class = np.argmax(mean, axis=1)
     dropout_predictios = np.argmax(dropout_outputs, axis=2)
 
-    num_class_pred = dropout_predictios.transpose().tolist() # shape (num_image, num_exp)
-    counts = []
-    for i in range(num_images):
-        count = 0
-        for j in range(iterations):
-            if num_class_pred[i][j] == true_labels[i]:
-                count += 1
-        counts.append(count / iterations)
-    counts = np.array(counts)
-    counts = counts
-
     # Calculating variance across multiple MCD forward passes
     variance_drop_outputs = np.var(dropout_outputs, axis=0)  # shape (n_samples, n_classes)
 
@@ -89,11 +77,7 @@ if __name__ == '__main__':
         pred_class_var = variance_drop_outputs[i][pred_class]
         variance_predicted_class.append(pred_class_var)
 
-    print("(Human-assigned) correct classes: ")
-    print(true_labels)
     print("Classes most probable for each image: ")
     print(predicted_class)
-    print("Perc correct classification: ")
-    print(counts)
     print("Variance of each image of the testset: ")
     print(variance_predicted_class)

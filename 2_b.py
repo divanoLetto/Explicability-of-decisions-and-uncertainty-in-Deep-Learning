@@ -12,8 +12,8 @@ from scipy.special import softmax
 from sklearn.metrics import accuracy_score
 
 
-def onehot_encoding(idx, nume_elements):
-    vec = numpy.zeros(nume_elements)
+def onehot_encoding(idx, num_elements):
+    vec = numpy.zeros(num_elements)
     vec[idx] = 1
     return vec
 
@@ -25,13 +25,14 @@ def cross_entropy(y, y_pre):
     return loss/float(y_pre.shape[0])
 
 
-def evaluate(val_loader, model, args):
+def evaluate(val_loader, model):
     batch_time = []
     losses = []
     top1 = []
 
     # Set to evaluate mode
     model.eval()
+    # the Dataset loader assign own lables to the images, need to cast them back to the original value
     inv_map = {v: k for k, v in val_loader.dataset.class_to_idx.items()}
 
     with torch.no_grad():
@@ -47,7 +48,6 @@ def evaluate(val_loader, model, args):
 
             # compute output
             output = model(images)
-            # todo non c'è processamento dell'immagine con i transforms, è giusto?
 
             # measure loss
             loss = cross_entropy(ground_truth, output)
@@ -61,9 +61,6 @@ def evaluate(val_loader, model, args):
             batch_time.append(time.time() - end)
             end = time.time()
 
-            if i % args['print_freq'] == 0:
-                print("Accuracy: ", acc, " ,loss: ", loss)
-
     return np.average(batch_time), np.average(losses), np.average(top1)
 
 
@@ -72,10 +69,10 @@ if __name__ == "__main__":
     # Get settings
     settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
+    settings_model = settings_parser.get_settings('Model')
 
-    print_freq = int(settings_system['print_freq'])
     val_images_path = settings_dataset['val_images_path']
-    batch_size = 256
+    batch_size = int(settings_model['batch_size'])
 
     # load ImageNet VGG16 Weights
     VGG16 = vgg16(pretrained=True)
@@ -90,16 +87,15 @@ if __name__ == "__main__":
     ])
     # create DataLoader for the validation set
     val_loader = torch.utils.data.DataLoader(
-        datasets.ImageFolder(val_images_path, transf),
+        datasets.ImageFolder(val_images_path, transform=transf),
         batch_size=batch_size
     )
 
     model = VGG16
-    print(VGG16)
+    print("VGG16 model: ")
+    print(model)
 
-    args = {'print_freq': print_freq}
-
-    batch_time_avg, losses_avg, top1_avg = evaluate(val_loader, model, args)
+    batch_time_avg, losses_avg, top1_avg = evaluate(val_loader, model)
     print("Average batch time: ", batch_time_avg)
     print("Average loss: ", losses_avg)
     print("Average top1 acc: ", top1_avg)

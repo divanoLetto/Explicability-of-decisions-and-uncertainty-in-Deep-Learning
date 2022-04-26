@@ -2,7 +2,6 @@ import argparse
 import os
 import numpy as np
 import random
-import torch
 from torchvision import models
 from torch.optim import SGD
 import torchvision.transforms as transforms
@@ -97,10 +96,11 @@ if __name__ == '__main__':
     settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
 
-    rootdir = settings_dataset['val_images_path']
+    val_images_path = settings_dataset['val_images_path']
+
     classes = []
-    for file in os.listdir(rootdir):
-        d = os.path.join(rootdir, file)
+    for file in os.listdir(val_images_path):
+        d = os.path.join(val_images_path, file)
         if os.path.isdir(d):
             classes.append(int(file))
 
