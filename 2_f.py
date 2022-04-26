@@ -7,16 +7,17 @@ from Utils import unsqueeze, auto_grad, squeeze, rescale
 from torchvision.transforms import transforms
 import matplotlib.pyplot as plt
 from utils import settings_parser
+import numpy as np
 
 
 if __name__ == '__main__':
     # Get settings
     parser = argparse.ArgumentParser()
-    settings_system = settings_parser.get_settings('System')
     settings_dataset = settings_parser.get_settings('Dataset')
 
     test_img_dir = settings_dataset['test_images_path']
 
+    # Process image function
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     transf = transforms.Compose([
         transforms.Resize(256),
@@ -26,11 +27,12 @@ if __name__ == '__main__':
         transforms.Lambda(unsqueeze),
         transforms.Lambda(auto_grad)
     ])
+    # Get the model
     model = vgg16(pretrained=True)
     model.eval()
 
     list_relu_forward = []
-
+    # Define new forward and backward pass for the ReLu layers
     def guided_relu_forward(module, ten_in, ten_out):
         # save the outputs
         list_relu_forward.append(ten_out)
@@ -70,9 +72,13 @@ if __name__ == '__main__':
             # Normalize to [0,1]
             M = (M - M.min()) / (M.max() - M.min())
 
-            plt.imshow(M, cmap="inferno")
+            # Get the color map
+            cm = plt.get_cmap('inferno')
+            # Apply the colormap like a function to any array:
+            colored_image = cm(M)
             path = ".\guid_back_class_saliency_maps/" + img
-            plt.savefig(path)
-            plt.clf()
+
+            # But we want to convert to RGB in uint8 and save it:
+            Image.fromarray((colored_image[:, :, :3] * 255).astype(np.uint8)).save(path)
 
 
