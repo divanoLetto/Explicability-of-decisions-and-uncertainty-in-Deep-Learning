@@ -1,1 +1,1 @@
-# Explicability-of-decisions-and-uncertainty-in-Deep-Learning
+# Explicability of decisions and uncertainty in Deep Learning
