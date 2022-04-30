@@ -28,19 +28,6 @@ Real Image            |  Class Saliency Map   |  CLass Saliency Map with Guided 
 :-------------------------:|:-------------------------:|:---------------------------------:
 ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_real.JPEG)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_csm.JPEG)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_csm_g.JPEG)
 
-<table>
-  <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple and selected day in pink</td>
-  </tr>
-  <tr>
-    <td><img src="images/2_real.JPEG" width=270 height=480></td>
-    <td><img src="images/2_real.JPEG" width=270 height=480></td>
-    <td><img src="images/2_real.JPEG" width=270 height=480></td>
-  </tr>
- </table>
-
 - **Uncertainties via Monte Carlo Dropout:**<br/>
 We answer the question how reliable a prediction of a model is by calculating the variance of its decision by randomly sampling its weights from the distribution of possible weights that is possible to obtain by activating the Dropout layers.
 
