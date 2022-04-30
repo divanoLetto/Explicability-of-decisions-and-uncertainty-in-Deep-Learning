@@ -13,15 +13,18 @@ The models that through a series of computations produce a decision are treated 
 It is therefore useful to be able to elaborate methods that, given a model, are able to provide an interpretation of its behavior.<br/>
 In this project we implemented methods that allow to explain the behavior of a model as a whole (**global methods**) or with respect to a specific decision (**local methods**).
 
-## Results
+## Methods
 
 - **Model Class Visualization:** <br/>
 For each possible prediction class (for example Dog, Cat, Snake, ...) it is possible to have the model generate the image that maximizes the probability of belonging to that class. We question the model about its image archetype of a particular class.<br/>
 To improve the quality of the images produced every k iterations a Gaussian kernel is applied to the result.
 
-- Class Saliency Maps:
+- **Class Saliency Maps:** 
+Given an image and a prediction, it is possible to interrogate the model on which pixels it has concentrated on for its decision. <br/>
+This gives us spatial information on the reasons of its decision.
 
-- Uncertainties via Monte Carlo Dropout:
+- **Uncertainties via Monte Carlo Dropout:**
+We answer the question how reliable a prediction of a model is by calculating the variance of its decision by randomly sampling its weights from the distribution of possible weights that is possible to obtain by activating the Dropout layers.
 
 ## Installation
 
