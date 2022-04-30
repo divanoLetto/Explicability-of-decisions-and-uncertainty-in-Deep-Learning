@@ -19,11 +19,16 @@ In this project we implemented methods that allow to explain the behavior of a m
 For each possible prediction class (for example Dog, Cat, Snake, ...) it is possible to have the model generate the image that maximizes the probability of belonging to that class. We question the model about its image archetype of a particular class.<br/>
 To improve the quality of the images produced every k iterations a Gaussian kernel is applied to the result.
 
-- **Class Saliency Maps:** 
+- **Class Saliency Maps:** <br/>
 Given an image and a prediction, it is possible to interrogate the model on which pixels it has concentrated on for its decision. <br/>
-This gives us spatial information on the reasons of its decision.
+This gives us spatial information on the reasons of its decision. <br/>
+To obtain a less noisy response the guided backpropagation of the ReLu functions has been implemented. 
 
-- **Uncertainties via Monte Carlo Dropout:**
+Real Image            |  Class Saliency Map   |  CLass Saliency Map with Guided Backpropagation
+:-------------------------:|:-------------------------:
+![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_real.JPEG)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_csm.JPEG)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_csm_g.JPEG)
+
+- **Uncertainties via Monte Carlo Dropout:**<br/>
 We answer the question how reliable a prediction of a model is by calculating the variance of its decision by randomly sampling its weights from the distribution of possible weights that is possible to obtain by activating the Dropout layers.
 
 ## Installation
