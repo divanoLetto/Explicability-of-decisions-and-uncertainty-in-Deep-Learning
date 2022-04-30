@@ -8,7 +8,10 @@
 
 ## Introduction
 
-
+One of the problems that exist in deep learning is the ability to explain why an AI makes a particular decision. 
+The models that through a series of computations produce a decision are treated as a black box: they are not able to give explanations on why they assume a certain behavior.
+It is therefore useful to be able to elaborate methods that, given a model, are able to provide an interpretation of its behavior.
+In this project we implemented methods that allow to explain the behavior of a model as a whole (global methods) or with respect to a specific decision (local methods).
 
 ## Results
 
