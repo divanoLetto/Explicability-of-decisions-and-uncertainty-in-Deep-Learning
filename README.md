@@ -15,8 +15,8 @@ In this project we implemented methods that allow to explain the behavior of a m
 
 ## Results
 
-- Model Class Visualization: 
-For each possible prediction class (for example Dog, Cat, Snake, ...) it is possible to have the model generate the image that maximizes the probability of belonging to that class. We question the model about its image archetype of a particular class.
+- **Model Class Visualization:** <br/>
+For each possible prediction class (for example Dog, Cat, Snake, ...) it is possible to have the model generate the image that maximizes the probability of belonging to that class. We question the model about its image archetype of a particular class.<br/>
 To improve the quality of the images produced every k iterations a Gaussian kernel is applied to the result.
 
 - Class Saliency Maps:
