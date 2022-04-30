@@ -15,6 +15,12 @@ In this project we implemented methods that allow to explain the behavior of a m
 
 ## Results
 
+- Model class Visualization:
+
+- Class Saliency Maps:
+
+- Uncertainties via Monte Carlo Dropout:
+
 ## Installation
 
 The following libraries are needed to run the code:
