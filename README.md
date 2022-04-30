@@ -24,7 +24,7 @@ Given an image and a prediction, it is possible to interrogate the model on whic
 This gives us spatial information on the reasons of its decision. <br/>
 To obtain a less noisy response the guided backpropagation of the ReLu functions has been implemented. 
 
-Real Image            |  Class Saliency Map   |  CLass Saliency Map with Guided Backpropagation
+Real Image            |  Class Saliency Map   |  CSM with Guided Backpropagation
 :-------------------------:|:-------------------------:|:---------------------------------:
 ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_real.JPEG)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_csm.JPEG)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/2_csm_g.JPEG)
 
