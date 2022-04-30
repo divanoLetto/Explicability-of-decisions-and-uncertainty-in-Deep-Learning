@@ -51,9 +51,9 @@ In order to preprocess the dataset it is necessary to run the process_data.py fi
 
 In order to run the programs files for the first time using the default settings (those that yield the best results), simply run the following scripts:
 
-1. 2b - Model valuation, loss and accuracy .
-2. 2c - Model Class Visualization with and without Gaussian kernel convolution.
-3. 2d - Predictions on the testset.
-4. 2e - Class saliency Map.
-5. 2f - Class saliency Map with ReLu guided backpropagation.
-6. 2h - Uncertainties via Monte Carlo Dropout.
+- 2b : Model valuation, loss and accuracy .
+- 2c : Model Class Visualization with and without Gaussian kernel convolution.
+- 2d : Predictions on the testset.
+- 2e : Class saliency Map.
+- 2f : Class saliency Map with ReLu guided backpropagation.
+- 2h : Uncertainties via Monte Carlo Dropout.
