@@ -1,5 +1,5 @@
 # Explicability of decisions and uncertainty in Deep Learning
-## Authors: Lorenzo Mandelli, Paula Mihalcea
+## Authors: Lorenzo Mandelli
 #### Università degli Studi di Firenze | UiT The Arctic University of Norway 
 
 ---
@@ -8,6 +8,9 @@
 
 ## Introduction
 
+
+
+## Results
 
 ## Installation
 
