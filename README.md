@@ -35,12 +35,12 @@ We answer the question how reliable a prediction of a model is by calculating th
 
 The following libraries are needed to run the code:
 
-1. torch (version =  )
-2. torchvision (version = )
-3. matplotlib (version =  )
-4. scikit-learn (version =  )
-5. numpy 
-6. scipy 
+1. torch (version =  1.11.0)
+2. torchvision (version = 0.12.0)
+3. matplotlib (version = 3.5.1)
+4. scikit-learn (version = 1.0.2)
+5. Pillow (version = 9.1.0) 
+6. scipy (version = 1.8.0)
 
 ## Data preprocessing
 
