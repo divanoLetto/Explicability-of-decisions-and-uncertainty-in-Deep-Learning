@@ -23,8 +23,7 @@ To improve the quality of the images produced every k iterations a Gaussian kern
 Class image            |  Model Class Visualization   |  MCV with Gaussian Kernel
 :-------------------------:|:-------------------------:|:---------------------------------:
 Green snake, Grass snake  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/55.png)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/55_gauss.png)
-:-------------------------:|:-------------------------:|:---------------------------------:
-Tarantula  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/55.png)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/55_gauss.png)
+Tarantula  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/76.png)  |  ![](https://github.com/divanoLetto/Explicability-of-decisions-and-uncertainty-in-Deep-Learning/blob/master/images/76_gauss.png)
 
 
 - **Class Saliency Maps:** <br/>
