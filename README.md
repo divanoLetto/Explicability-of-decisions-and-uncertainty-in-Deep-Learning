@@ -58,13 +58,13 @@ The following is the organization of the dataset directories expected by the cod
 * data **root_dir**/
   * **dataset**/ 
     * DL_data/
-      * test image (test set)
-      * validation images (validation set)
+      * test image (test set).
+      * validation images (validation set).
       * synset_words (contains the class name, where the first row indicates the name for class ID 0, the second row indicates the name for class ID 1 and so on)
-      * val.txt (contains the list of filenames for the validation dataset and the corresponding class ID [0,999])
+      * val.txt (contains the list of filenames for the validation dataset and the corresponding class ID [0,999]).
     * DL_data_p/
-      * N (directory of class N)
-    * processed.py (the script for dataset preprocessing)
+      * N (directory of class N).
+    * processed.py (the script for dataset preprocessing).
 ### Data preprocessing
 
 The dataset is made up of 91 images each of a different class. <br/>
