@@ -60,7 +60,7 @@ The following is the organization of the dataset directories expected by the cod
     * DL_data/
       * test image (test set).
       * validation images (validation set).
-      * synset_words (contains the class name, where the first row indicates the name for class ID 0, the second row indicates the name for class ID 1 and so on)
+      * synset_words (contains the class name, where the first row indicates the name for class ID 0, the second row indicates the name for class ID 1 and so on).
       * val.txt (contains the list of filenames for the validation dataset and the corresponding class ID [0,999]).
     * DL_data_p/
       * N (directory of class N).
